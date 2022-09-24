@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Hogwarts student list</title>
+  </head>
+  <body>
+    <header>
+      <h1>Hogwarts student list</h1>
+    </header>
+
+    <main>
+      <section id="background">
+        <img src="images/background.webp" alt="background" />
+      </section>
+
+      <!-- the different buttons that can filter and sort -->
+      <section class="allthebuttons">
+        <!-- sort between houses, first name and last name  -->
+        <div class="dropdown_content">
+          <button id="sort" class="dropdown_button"><span>Sort by</span><span>&#8595;</span></button>
+          <div id="sort_dropdown" class="button_dropdown">
+            <p data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="house">House</p>
+          </div>
+        </div>
+        <!-- filtering between the houses -->
+        <div class="dropdown_content">
+          <!-- span number element is the code to make an arrow -->
+          <button id="filter" class="dropdown_button"><span>Filter by</span><span>&#8595;</span></button>
+          <div id="dropdown_filter" class="button_dropdown">
+            <p data-filter="All houses" data-action="filter">All houses</p>
+            <p data-filter="Ravenclaw" data-action="filter">Ravenclaw</p>
+            <p data-filter="Hufflepuff" data-action="filter">Hufflepuff</p>
+            <p data-filter="Slytherin" data-action="filter">Slytherin</p>
+            <p data-filter="Gryffindor" data-action="filter">Gryffindor</p>
+          </div>
+        </div>
+
+        <!-- rest of the buttons -->
+        <div><button class="expelled">Expelled students</button></div>
+        <div><button class="squad">Inquisitorial Squad</button></div>
+        <div><button class="prefects">Prefects</button></div>
+      </section>
+
+      <!-- search bar -->
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <!-- studentlist -->
+      <section id="studentList"></section>
+
+      <!-- what will appear on the student list - each student in a box -->
+
+      <!-- what will appear on the student modal pop-up window when clicked -->
+      <template id="modal">
+        <section>
+          <article>
+            <!-- expell animation-->
+            <div class="expell_animation" class="hidden">
+              <p>EXPELLED!</p>
+            </div>
+
+            <div class="modal_left">
+              <div class="top">
+                <img src="images/zabini_b.png" alt="student image" />
+              </div>
+              <div class="bottom">
+                <!-- house crest -->
+                <div class="house_crest">
+                  <img src="images/gryffindorlogo.webp" alt="House crest" />
+                </div>
+              </div>
+            </div>
+            <div class="modal_right">
+              <div class="top_right">
+                <!-- first name, middle name, last name, nick name, blood status -->
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+              </div>
+              <!-- the buttons on the modal that can be clicked -->
+              <div class="bottom_right">
+                <article>
+                  <button>EXPELL</button>
+                  <button>PREFECT</button>
+                  <button>SQUAD</button>
+                </article>
+              </div>
+            </div>
+          </article>
+        </section>
+      </template>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
