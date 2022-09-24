@@ -76,7 +76,7 @@ function mapIt(elm) {
 
   newObj.firstName = firstLetterUpperCase(splittedName[0]);
   newObj.middleName = splittedName.length === 3 && !splittedName[1].includes('"') ? splittedName[1] : "";
-  newObj.lastName = splittedName.length > 1 ? firstLetterUpperCase(splittedName.slice(-1)[0]) : "Unknown";
+  newObj.lastName = splittedName.length > 1 ? firstLetterUpperCase(splittedName.slice(-1)[0]) : " ";
   newObj.nickName = splittedName.length === 3 && splittedName[1].includes('"') ? firstLetterUpperCase(splittedName[1].replaceAll('"', "")) : "";
   newObj.house = firstLetterUpperCase(elm.house.replaceAll(" ", "").toLowerCase());
   newObj.studentImage = getStudentImage(splittedName);
