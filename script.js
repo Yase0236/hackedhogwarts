@@ -59,12 +59,15 @@ async function loadJSON() {
 function createStudentList(studentlistJSON) {
   studentlist = studentlistJSON.map(mapIt);
 
+  //old array needs to be deleted (just used as a test)
   console.log("old", studentlistJSON);
   console.log("new", studentlist);
 
   showStudentList(studentlist);
 }
+// creating elements and fixing issues with cap, pictures and missing names
 
+//page needs to be refreshed twice for the student images to load perfectly :(
 function mapIt(elm) {
   const newObj = Object.create(studentObj);
 
@@ -80,7 +83,7 @@ function mapIt(elm) {
 
   return newObj;
 }
-
+//fixing issues with the Patils names and pictures (since the pictures wont load)
 function getStudentImage(splittedName) {
   if (splittedName.slice(-1)[0].toLowerCase() === "patil") {
     return splittedName.slice(-1)[0].toLowerCase() + "_" + splittedName[0] + ".png";
@@ -100,7 +103,7 @@ function checkImageExists(img) {
     return true;
   }
 }
-
+//using inner.html to set students image and names and showing the student list
 function showStudentList(listOfStudents) {
   let createList = document.querySelector("#studentList");
   const templateStart = "<table>";
