@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta name="robots" content="noindex" />
     <link rel="stylesheet" href="style.css" />
     <title>Hogwarts student list</title>
   </head>
@@ -24,9 +25,9 @@
         <div class="dropdown_content">
           <button id="sort" class="dropdown_button"><span>Sort by</span><span>&#8595;</span></button>
           <div id="sort_dropdown" class="button_dropdown">
-            <p data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="house">House</p>
+            <option data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</option>
+            <option data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</option>
+            <option data-sort-direction="asc" data-action="sort" data-sort="house">House</option>
           </div>
         </div>
         <!-- filtering between the houses -->
@@ -60,8 +61,9 @@
       <template id="modal">
         <section>
           <article>
+            <button class="closeButton">X</button>
             <!-- expell animation-->
-            <div class="expell_animation" class="hidden">
+            <div class="expell_animation" class="hide">
               <p>EXPELLED!</p>
             </div>
 
@@ -99,6 +101,8 @@
       </template>
 
       <!-- hacking goes here -->
+
+      <footer>By Jasmin Ersan, MMD 2022</footer>
     </main>
 
     <script src="script.js"></script>
