@@ -54,7 +54,7 @@ h2 {
   font-size: 2em;
   font-weight: 800;
 }
-h3,p, td {
+h3,p {
   /* text-align: center; */
   padding: 1rem;
   margin: 1rem;
@@ -151,7 +151,7 @@ h3,p, td {
 } 
   
 .dropdown_button p:hover {
-  color: rgb(93, 55, 195)
+  color: rgb(255, 255, 255)
 }
 .dropdown_content {
   position: relative;
@@ -221,7 +221,17 @@ article {
   background-color: antiquewhite;
   text-align: center;
 }
-
+.closeButton {
+  position: absolute;
+  right: -1em;
+  top: -1em;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  background-color: black;
+  color: white;
+  border: 1px white solid;
+}
 /***************search bar styling************************/
 .search-bar {
   text-align: right;
