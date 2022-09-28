@@ -16,14 +16,14 @@
 
     <main>
       <section id="background">
-        <img src="images/background.webp" alt="background" />
+        <img src="images/background.jpg" alt="background" />
       </section>
 
       <!-- the different buttons that can filter and sort -->
       <section class="allthebuttons">
         <!-- sort between houses, first name and last name  -->
         <div class="dropdown_content">
-          <button id="sort" class="dropdown_button"><span>Sort by</span><span>&#8595;</span></button>
+          <button id="sort" class="dropdown_button"><span>Sort by</span></button>
           <div id="sort_dropdown" class="button_dropdown">
             <p data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</p>
             <p data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</p>
@@ -33,7 +33,7 @@
         <!-- filtering between the houses -->
         <div class="dropdown_content">
           <!-- span number element is the code to make an arrow -->
-          <button id="filter" class="dropdown_button"><span>Filter by</span><span>&#8595;</span></button>
+          <button id="filter" class="dropdown_button"><span>Filter by</span></button>
           <div id="dropdown_filter" class="button_dropdown">
             <p data-filter="All houses" data-action="filter">All houses</p>
             <p data-filter="Ravenclaw" data-action="filter">Ravenclaw</p>
@@ -50,12 +50,54 @@
       </section>
 
       <!-- search bar -->
-      <div class="search-bar">
+      <div class="search-bar" id="showAllButtons">
         <input type="text" placeholder="Search..." />
       </div>
 
-      <!-- studentlist - what will appear on the student list (moved to javascript (inner.html)) -->
+      <!-- <aside>
+        <div id="about-panel">
+          <section id="about-info">
+            <h2>ABOUT</h2>
+            <p id="total-count">All Students:</p>
+            <p id="active-count">Active Students:</p>
+            <p id="display-count">Displayed Students:</p>
+            <p id="expelled-count">Expelled Students:</p>
+            <p id="gryffindor-count">Gryffindor:</p>
+            <p id="ravenclaw-count">Ravenclaw:</p>
+            <p id="hufflepuff-count">Hufflepuff:</p>
+            <p id="slytherin-count">Slytherin:</p>
+            <p id="prefect-count">Prefects:</p>
+            <p id="inquisition-count">Inquisitorial squad:</p>
+          </section>
+        </div>
+      </aside> -->
+
+      <!-- studentlist - what will appear on the student list  -->
       <section id="studentList"></section>
+
+      <template id="studentTemplate">
+        <table class="studentListTable">
+          <tr>
+            <td data-field="image">
+              <img src="images/anonymus.png" alt="Student's photo" />
+            </td>
+            <td data-field="firstName"></td>
+            <td data-field="lastName"></td>
+            <td data-field="prefect">
+              <img class="hide" src="images/prefects.png" alt="Prefect" />
+            </td>
+            <td data-field="squad">
+              <img class="hide" src="images/squad.png" alt="Squad" />
+            </td>
+            <td data-field="blood">
+              <img src="images/muggleblood.png" alt="Blood type" id="bloodStatus" />
+            </td>
+            <td data-field="house">
+              <img src="images/ravenclaw.png" alt="House crest" />
+            </td>
+          </tr>
+        </table>
+      </template>
 
       <!-- what will appear on the student modal pop-up window when clicked -->
       <template id="modal">
@@ -74,7 +116,7 @@
               <div class="bottom">
                 <!-- house crest -->
                 <div class="house_crest">
-                  <img src="images/gryffindorlogo.webp" alt="House crest" />
+                  <img src="images/gryffindor.png" alt="House crest" />
                 </div>
               </div>
             </div>

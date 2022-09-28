@@ -62,7 +62,28 @@ h3,p {
   font-weight: 800;
 }
 
-/****************************student list styling - needs changes***************************/
+/****************************************** about section*******************************/
+#about-panel {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  /* gap: 0.5rem; */
+  /* margin-bottom: 1rem; */
+  background-color: var(--background-color);
+  /* padding: 1rem; */
+  border-radius: 0.5rem;
+  border: 5px rgba(0, 0, 0, 0);
+  height: fit-content;
+  /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.178); */
+  /* align-items: center; */
+  color: var(--text-color);
+}
+
+#about-info {
+  /* display: flex; */
+  /* flex-direction: column; */
+  gap: 0.25rem;
+}
+/****************************student list styling***************************/
 #studentList {
   margin: 1rem;
 }
@@ -93,7 +114,11 @@ h3,p {
   height: 100px;
 }
 
+#bloodStatus {
+  height: 100px;
+  width: 100px;
 
+}
 /************styling on the buttons**********/
 .allthebuttons{
   display: flex;

@@ -1,74 +1,73 @@
 "use strict";
 
 //starting the page up
-document.addEventListener("DOMContentLoaded", loadJSON);
+document.addEventListener("DOMContentLoaded", init);
 
 //all my variables
-let studentlist;
 let allStudents = [];
-// let prefectStudents = [];
-// let expelledStudents = [];
-// let squadStudents = [];
-
-const jsonFile = "https://petlatkea.dk/2021/hogwarts/students.json";
-// const template = document.getElementById("studentTemplate").content;
+let pureBlood = [];
+let halfBlood = [];
+let muggle = [];
 
 const studentObj = {
   firstName: "",
-  middleName: "null",
-  lastName: "null",
+  middleName: "",
+  lastName: "",
   nickName: "",
-  imageSrc: "",
   house: "",
-  bloodStatus: "",
+  blood: "",
   expelled: false,
   squad: false,
   prefect: false,
-  hacker: false,
 };
 
-const theHacker = {
-  firstName: "Jasmin",
-  middleName: "",
-  nickName: "",
-  lastName: "Ersan",
-  Photo: "",
-  house: "Hufflepuff",
-  bloodStatus: "Muggle",
-  prefect: false,
-  expelled: false,
-  inSquad: false,
-  hacker: true,
-};
+const jsonURL = "https://petlatkea.dk/2021/hogwarts/students.json";
+const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 
-function start() {
-  //should there be more elements here? (expell, squad- and prefect button/hack)
+const settings = {
+  filter: "all",
+  sortBy: "name",
+  sortDir: "asc",
+};
+//starting off the page
+function init() {
+  registerButtons();
+  loadBlood();
   loadJSON();
 }
 
-//loading the json file
+//Register Buttons
+function registerButtons() {
+  console.log("registerBtns");
+  document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
+  // document.querySelectorAll("[data-action='sort']").forEach((th) => th.addEventListener("click", selectSorting));
+}
+
 async function loadJSON() {
-  const jsonFile = await fetch("students.json");
-  // const jsonBlood = await fetch("https://petlatkea.dk/2021/hogwarts/families.json");
+  console.log("loadJSON");
 
-  let studentlistJSON = await jsonFile.json();
-  createStudentList(studentlistJSON);
+  const response = await fetch(jsonURL);
+  const jsonData = await response.json();
+
+  prepareStudents(jsonData);
 }
 
-// cleaning json data
-function createStudentList(studentlistJSON) {
-  studentlist = studentlistJSON.map(mapIt);
+async function loadBlood() {
+  console.log("loadBlood");
 
-  //old array needs to be deleted (just used as a test)
-  console.log("old", studentlistJSON);
-  console.log("new", studentlist);
-
-  showStudentList(studentlist);
+  const response = await fetch(bloodURL);
+  const bloodData = await response.json();
+  prepareBlood(bloodData);
 }
-// creating elements and fixing issues with cap, pictures and missing names
 
-//page needs to be refreshed twice for the student images to load perfectly :(
-function mapIt(elm) {
+//Prepare students
+function prepareStudents(jsonData) {
+  allStudents = jsonData.map(prepareObject);
+
+  displayList(allStudents, pureBlood, halfBlood);
+  // allStudents.forEach(displayList);
+}
+function prepareObject(elm) {
   const newObj = Object.create(studentObj);
 
   const cleanedUpName = elm.fullname.replaceAll("-", " ").trim().toLowerCase();
@@ -79,58 +78,101 @@ function mapIt(elm) {
   newObj.lastName = splittedName.length > 1 ? firstLetterUpperCase(splittedName.slice(-1)[0]) : " ";
   newObj.nickName = splittedName.length === 3 && splittedName[1].includes('"') ? firstLetterUpperCase(splittedName[1].replaceAll('"', "")) : "";
   newObj.house = firstLetterUpperCase(elm.house.replaceAll(" ", "").toLowerCase());
-  newObj.studentImage = getStudentImage(splittedName);
+  newObj.studentImage = `${newObj.lastName.toLowerCase()}_${newObj.firstName.charAt(0).toLowerCase()}.png`;
 
   return newObj;
 }
-//fixing issues with the Patils names and pictures (since the pictures wont load)
-function getStudentImage(splittedName) {
-  if (splittedName.slice(-1)[0].toLowerCase() === "patil") {
-    return splittedName.slice(-1)[0].toLowerCase() + "_" + splittedName[0] + ".png";
-  } else {
-    return splittedName.slice(-1)[0].toLowerCase() + "_" + splittedName[0].charAt(0) + ".png";
-  }
-}
-
-function checkImageExists(img) {
-  let image = new Image();
-
-  let url_image = "images/" + img;
-  image.src = url_image;
-  if (image.width == 0) {
-    return false;
-  } else {
-    return true;
-  }
-}
-//using inner.html to set students image and names and showing the student list
-function showStudentList(listOfStudents) {
-  let createList = document.querySelector("#studentList");
-  const templateStart = "<table>";
-  let templateContent = "";
-  const templateEnd = "</table>";
-  listOfStudents.forEach((element) => {
-    const studentImage = checkImageExists(element.studentImage) ? element.studentImage : "anonymus.png";
-    templateContent += `
-    <tr>
-      <td data-field="${element.imageSrc}">
-        <img src="images/${studentImage}" alt="student image" />
-      </td>
-      <td data-field="${element.firstName}">${element.firstName + " " + element.lastName}</td>
-      <td data-field="${element.icons}">
-        <img src="images/squad.webp" class="hide" alt="Squad logo" />
-        <img src="images/prefects.webp" class="hide" alt="Prefect logo" />
-      </td>
-    </tr>
-    `;
-  });
-
-  createList.innerHTML = `
-  ${templateStart} + ${templateContent} + ${templateEnd}`;
-}
-
-// Utils
 
 function firstLetterUpperCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function displayList(student) {
+  student.forEach(determineBloodStatus);
+  student.forEach(displayStudent);
+}
+
+function displayStudent(student) {
+  const clone = document.querySelector("#studentTemplate").content.cloneNode(true);
+
+  clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
+  clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
+  clone.querySelector('[data-field="house"]').textContent = student.house;
+  clone.querySelector('[data-field="image"] img').src = `images/${student.studentImage}`;
+  clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
+
+  document.querySelector("#studentList").appendChild(clone);
+}
+//fixing blood status
+function prepareBlood(bloodData) {
+  pureBlood = bloodData.pure;
+  halfBlood = bloodData.half;
+}
+
+function determineBloodStatus(student) {
+  // console.log(pureBlood);
+  // console.log(halfBlood);
+  if (pureBlood.includes(student.lastName)) {
+    student.blood = "pureblood";
+  }
+  if (pureBlood.includes(student.lastName) && halfBlood.includes(student.lastName)) {
+    student.blood = "halfblood";
+  }
+  if (halfBlood.includes(student.lastName)) {
+    student.blood = "halfblood";
+  }
+  if (!pureBlood.includes(student.lastName) && !halfBlood.includes(student.lastName)) {
+    student.blood = "muggleblood";
+  }
+
+  console.log(student.blood);
+}
+
+//fixing house crests
+//fixing images for leanne, padma, parvati
+
+//Filtering
+
+function selectFilter(event) {
+  const filter = event.target.dataset.filter;
+  setFilter(filter);
+}
+
+function setFilter(filter) {
+  settings.filter = filter;
+  buildList();
+}
+
+function filterList(filteredList) {
+  // filteredList = allStudents;
+  if (settings.filter === "Ravenclaw") {
+    //Create a filteredlist of ravenclaw
+    filteredList = filteredList.filter(isRavenclaw);
+  } else if (settings.filter === "Hufflepuff") {
+    //Create a filteredlist of hufflepuff
+    filteredList = filteredList.filter(isHufflepuff);
+  } else if (settings.filter === "Slytherin") {
+    //Create a filteredlist of slytherin
+    filteredList = filteredList.filter(isSlytherin);
+  } else {
+    settings.filter === "Gryffindor";
+    //Create a filteredlist of gryffindor
+    filteredList = filteredList.filter(isGryffindor);
+  }
+
+  return filteredList;
+}
+
+function isRavenclaw(students) {
+  return students.type === "Ravenclaw";
+}
+
+function isHufflepuff(students) {
+  return students.type === "Hufflepuff";
+}
+function isSlytherin(students) {
+  return students.type === "Slytherin";
+}
+function isGryffindor(students) {
+  return students.type === "Gryffindor";
 }
