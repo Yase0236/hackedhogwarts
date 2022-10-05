@@ -26,7 +26,7 @@ const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 
 const settings = {
   filter: "all",
-  sortBy: "name",
+  sortBy: "firstName",
   sortDir: "asc",
   filterValue: "",
   displayedArray: [],
@@ -40,13 +40,13 @@ function init() {
 
 //Register Buttons
 function registerButtons() {
-  console.log("registerBtns");
+  // console.log("registerBtns");
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
-  // document.querySelectorAll("[data-action='sort']").forEach((th) => th.addEventListener("click", selectSorting));
+  document.querySelectorAll("[data-action='sort']").forEach((p) => p.addEventListener("click", selectSort));
 }
 
 async function loadJSON() {
-  console.log("loadJSON");
+  // console.log("loadJSON");
 
   const response = await fetch(jsonURL);
   const jsonData = await response.json();
@@ -55,7 +55,7 @@ async function loadJSON() {
 }
 
 async function loadBlood() {
-  console.log("loadBlood");
+  // console.log("loadBlood");
 
   const response = await fetch(bloodURL);
   const bloodData = await response.json();
@@ -127,7 +127,7 @@ function determineBloodStatus(student) {
   if (!pureBlood.includes(student.lastName) && !halfBlood.includes(student.lastName)) {
     student.blood = "muggleblood";
   }
-  console.log(student.blood);
+  // console.log(student.blood);
 }
 
 //fixing house crests
@@ -157,7 +157,7 @@ function determineHouse(student) {
 
 // fixing images for leanne, padma, parvati
 
-// Filtering
+// Filtering students
 
 function selectFilter(event) {
   settings.filterValue = event.target.dataset.filter;
@@ -186,4 +186,46 @@ function filtered(student) {
 function buildList() {
   const filteredList = filtered(filteredStudents);
   return filteredList;
+}
+
+// Sorting students
+function selectSort(event) {
+  // console.log(event.target.dataset.sortDirection);
+  settings.sortBy = event.target.dataset.sort;
+  settings.sortDir = event.target.dataset.sortDirection;
+
+  // toggle direction
+  if (settings.sortDir === "asc") {
+    event.target.dataset.sortDirection = "desc";
+  } else {
+    event.target.dataset.sortDirection = "asc";
+  }
+
+  console.log(`User selected ${settings.sortBy} - ${settings.sortDir}`);
+  sortList();
+}
+
+function sortList() {
+  let sortedList = allStudents;
+
+  let direction = 1;
+
+  if (settings.sortDir === "desc") {
+    direction = -1;
+  } else {
+    direction = 1;
+  }
+
+  sortedList = sortedList.sort(sortByProperty);
+
+  function sortByProperty(studentA, studentB) {
+    console.log(studentA, studentA[settings.sortBy]);
+    if (studentA[settings.sortBy] > studentB[settings.sortBy]) {
+      return -1 * direction;
+    } else {
+      return 1 * direction;
+    }
+  }
+
+  displayList(sortedList);
 }
