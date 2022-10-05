@@ -25,7 +25,7 @@ footer {
 .hide {
   display: none;
 }
-/*********************my custom variables********************/
+/*********************my custom properties********************/
 :root {
   --font-family: "Zen Kurenaido", sans-serif;
   --text-color: #ffffff;
@@ -42,6 +42,7 @@ footer {
   position: fixed;
   z-index: -1;
   background-size: cover;
+  background-color: var(--background-color);
 }
 
 h1 {
@@ -60,6 +61,23 @@ h3,p {
   margin: 1rem;
   font-size: 1.5em;
   font-weight: 800;
+}
+/* House crests */
+#houseCrest {
+  object-fit: cover;
+  height: 80px;
+  width: 80px;
+  border-radius: 50px;
+  border: 2px solid;
+  margin-right: 1rem;
+}
+/* blood status */
+#bloodStatus {
+  height: 80px;
+  width: 80px;
+  border: 2px solid;
+  border-radius: 50px;
+  margin-right: 1.5rem;
 }
 
 /****************************************** about section*******************************/
@@ -83,6 +101,7 @@ h3,p {
   /* flex-direction: column; */
   gap: 0.25rem;
 }
+
 /****************************student list styling***************************/
 #studentList {
   margin: 1rem;
@@ -114,11 +133,7 @@ h3,p {
   height: 100px;
 }
 
-#bloodStatus {
-  height: 100px;
-  width: 100px;
 
-}
 /************styling on the buttons**********/
 .allthebuttons{
   display: flex;

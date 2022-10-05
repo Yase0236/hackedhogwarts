@@ -1,0 +1,26 @@
+To do list:
+
+- fix images for leanne, padma, parvarti
+- fix house crests on student list
+- consider having prefect/squad on the student list, where you can press and unpress buttons (hopefully without js)
+- filtering on all the houses
+- sorting on first name, last name and houses
+- modal window 
+  - detailed information about each student (inc. photo, colors and house crest - insert icons i made for colors of each house)
+  - are they expelled
+  - are they in the squad/prefect
+- expell list
+  - students can't be added again
+- prefect list
+  - if a student is a prefect, it should say so on the pop-up
+- squad list
+  - only pureblood/slytherin students
+- make the search field work
+- about section (showing the number of students, expelled, students in each house etc.)
+- hacking the system
+  - remove students in the squad list
+  - mess up blood algorithm
+- inserting myself as a student 
+  - i cannot be deleted or expelled
+- activity diagram
+- documentation report needs to be updated

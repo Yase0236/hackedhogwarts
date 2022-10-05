@@ -28,6 +28,8 @@ const settings = {
   filter: "all",
   sortBy: "name",
   sortDir: "asc",
+  filterValue: "",
+  displayedArray: [],
 };
 //starting off the page
 function init() {
@@ -63,8 +65,8 @@ async function loadBlood() {
 //Prepare students
 function prepareStudents(jsonData) {
   allStudents = jsonData.map(prepareObject);
-
-  displayList(allStudents, pureBlood, halfBlood);
+  settings.displayedArray = allStudents;
+  displayList();
   // allStudents.forEach(displayList);
 }
 function prepareObject(elm) {
@@ -87,9 +89,10 @@ function firstLetterUpperCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function displayList(student) {
-  student.forEach(determineBloodStatus);
-  student.forEach(displayStudent);
+function displayList() {
+  document.querySelector("#studentList").innerHTML = "";
+  settings.displayedArray.forEach(determineBloodStatus);
+  settings.displayedArray.forEach(displayStudent);
 }
 
 function displayStudent(student) {
@@ -97,7 +100,7 @@ function displayStudent(student) {
 
   clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
   clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
-  clone.querySelector('[data-field="house"]').textContent = student.house;
+  clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
   clone.querySelector('[data-field="image"] img').src = `images/${student.studentImage}`;
   clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
 
@@ -124,55 +127,63 @@ function determineBloodStatus(student) {
   if (!pureBlood.includes(student.lastName) && !halfBlood.includes(student.lastName)) {
     student.blood = "muggleblood";
   }
-
   console.log(student.blood);
 }
 
 //fixing house crests
-//fixing images for leanne, padma, parvati
 
-//Filtering
+function prepareHouse(jsonData) {
+  gryffindor = jsonData.gryffindor;
+  slytherin = jsonData.slytherin;
+  hufflepuff = jsonData.hufflepuff;
+  ravenclaw = jsonData.ravenclaw;
+}
+
+function determineHouse(student) {
+  if (gryffindor.includes(student.house)) {
+    student.house = "gryffindor";
+  }
+  if (ravenclaw.includes(student.house)) {
+    student.house = "ravenclaw";
+  }
+  if (hufflepuff.includes(student.house)) {
+    student.house = "hufflepuff";
+  }
+  if (slytherin.includes(student.house)) {
+    student.house = "slytherin";
+  }
+  // console.log(student.house);
+}
+
+// fixing images for leanne, padma, parvati
+
+// Filtering
 
 function selectFilter(event) {
-  const filter = event.target.dataset.filter;
-  setFilter(filter);
+  settings.filterValue = event.target.dataset.filter;
+  document.querySelector("#filter span").textContent = filter;
+  setFilter();
+  console.table(setFilter());
+  settings.displayedArray = setFilter();
+  displayList();
 }
 
-function setFilter(filter) {
-  settings.filter = filter;
-  buildList();
-}
-
-function filterList(filteredList) {
-  // filteredList = allStudents;
-  if (settings.filter === "Ravenclaw") {
-    //Create a filteredlist of ravenclaw
-    filteredList = filteredList.filter(isRavenclaw);
-  } else if (settings.filter === "Hufflepuff") {
-    //Create a filteredlist of hufflepuff
-    filteredList = filteredList.filter(isHufflepuff);
-  } else if (settings.filter === "Slytherin") {
-    //Create a filteredlist of slytherin
-    filteredList = filteredList.filter(isSlytherin);
-  } else {
-    settings.filter === "Gryffindor";
-    //Create a filteredlist of gryffindor
-    filteredList = filteredList.filter(isGryffindor);
+function setFilter() {
+  let filteredStudents = allStudents.filter(filtered);
+  if (document.querySelector("#filter span").textContent !== "filter " && document.querySelector("#filter span").textContent !== "filter ") {
   }
-
+  return filteredStudents;
+}
+function filtered(student) {
+  if (student.house === settings.filterValue) {
+    return true;
+  } else if (settings.filterValue === "All houses") {
+    return true;
+  } else {
+    return false;
+  }
+}
+function buildList() {
+  const filteredList = filtered(filteredStudents);
   return filteredList;
-}
-
-function isRavenclaw(students) {
-  return students.type === "Ravenclaw";
-}
-
-function isHufflepuff(students) {
-  return students.type === "Hufflepuff";
-}
-function isSlytherin(students) {
-  return students.type === "Slytherin";
-}
-function isGryffindor(students) {
-  return students.type === "Gryffindor";
 }
