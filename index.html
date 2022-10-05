@@ -19,9 +19,13 @@
 
       <!-- the different buttons that can filter and sort -->
       <section class="allthebuttons">
+        <div>
+          <button class="all_students"><a href="index.html"> All students</a></button>
+        </div>
+
         <!-- sort between houses, first name and last name  -->
         <div class="dropdown_content">
-          <button id="sort" class="dropdown_button"><span>Sort by</span></button>
+          <button id="sort" class="dropdown_button">Sort by</button>
           <div id="sort_dropdown" class="button_dropdown">
             <p data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</p>
             <p data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</p>
@@ -30,8 +34,7 @@
         </div>
         <!-- filtering between the houses -->
         <div class="dropdown_content">
-          <!-- span number element is the code to make an arrow -->
-          <button id="filter" class="dropdown_button"><span>Filter by</span></button>
+          <button id="filter" class="dropdown_button">Filter by</button>
           <div id="dropdown_filter" class="button_dropdown">
             <p data-filter="All houses" data-action="filter">All houses</p>
             <p data-filter="Ravenclaw" data-action="filter">Ravenclaw</p>

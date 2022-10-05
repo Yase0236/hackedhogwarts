@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", init);
 
 //all my variables
 let allStudents = [];
+
+let expelledArray = [];
+
+let squadArray = [];
+let prefectArray = [];
+
 let pureBlood = [];
 let halfBlood = [];
 let muggle = [];
@@ -101,9 +107,18 @@ function displayStudent(student) {
   clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
   clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
   clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
-  clone.querySelector('[data-field="image"] img').src = `images/${student.studentImage}`;
+
   clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
 
+  if (student.firstName === "Leanne") {
+    clone.querySelector('[data-field="image"] img').src = `images/anonymus.png`;
+  } else if (student.firstName === "Padma") {
+    clone.querySelector('[data-field="image"] img').src = `images/patil_padma.png`;
+  } else if (student.firstName === "Parvati") {
+    clone.querySelector('[data-field="image"] img').src = `images/patil_parvati.png`;
+  } else {
+    clone.querySelector('[data-field="image"] img').src = `images/${student.studentImage}`;
+  }
   document.querySelector("#studentList").appendChild(clone);
 }
 //fixing blood status
@@ -155,13 +170,10 @@ function determineHouse(student) {
   // console.log(student.house);
 }
 
-// fixing images for leanne, padma, parvati
-
-// Filtering students
+// filtering students
 
 function selectFilter(event) {
   settings.filterValue = event.target.dataset.filter;
-  document.querySelector("#filter span").textContent = filter;
   setFilter();
   console.table(setFilter());
   settings.displayedArray = setFilter();
@@ -170,7 +182,7 @@ function selectFilter(event) {
 
 function setFilter() {
   let filteredStudents = allStudents.filter(filtered);
-  if (document.querySelector("#filter span").textContent !== "filter " && document.querySelector("#filter span").textContent !== "filter ") {
+  if (document.querySelector("#filter").textContent !== "filter " && document.querySelector("#filter").textContent !== "filter ") {
   }
   return filteredStudents;
 }

@@ -167,23 +167,21 @@ p {
 .allthebuttons button:hover {
   background-color: #60994e;
 }
-
-/* filtering and sorting */
-#filter,
-#sort {
-  text-align: left;
-  padding-left: 1rem;
+.all_students a, .all_students a:visited {
+  color: white;
+  text-decoration: none;
 }
-.allthebuttons button span:nth-of-type(2) {
+
+/* .allthebuttons button span:nth-of-type(2) {
   font-size: 1em;
   float: right;
   padding: 5px;
-}
+} */
   
 .allthebuttons button:hover {
   background-color: rgb(93, 55, 195);
 }
-/* the span buttons */
+/* the dropdown buttons */
 .dropdown_button {
   background-color: rgb(93, 55, 195);
   width: 12rem;
