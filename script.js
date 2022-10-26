@@ -22,6 +22,7 @@ const studentObj = {
   nickName: "",
   house: "",
   blood: "",
+  gender: "",
   expelled: false,
   squad: false,
   prefect: false,
@@ -80,6 +81,7 @@ function prepareObject(elm) {
 
   const cleanedUpName = elm.fullname.replaceAll("-", " ").trim().toLowerCase();
   const splittedName = cleanedUpName.split(" ");
+  const gender = elm.gender;
 
   newObj.firstName = firstLetterUpperCase(splittedName[0]);
   newObj.middleName = splittedName.length === 3 && !splittedName[1].includes('"') ? splittedName[1] : "";
@@ -87,6 +89,7 @@ function prepareObject(elm) {
   newObj.nickName = splittedName.length === 3 && splittedName[1].includes('"') ? firstLetterUpperCase(splittedName[1].replaceAll('"', "")) : "";
   newObj.house = firstLetterUpperCase(elm.house.replaceAll(" ", "").toLowerCase());
   newObj.studentImage = `${newObj.lastName.toLowerCase()}_${newObj.firstName.charAt(0).toLowerCase()}.png`;
+  newObj.gender = gender.substring(1, 0).toUpperCase() + gender.substring(1).toLowerCase();
 
   return newObj;
 }
@@ -119,6 +122,32 @@ function displayStudent(student) {
   } else {
     clone.querySelector('[data-field="image"] img').src = `images/${student.studentImage}`;
   }
+  // modal
+  clone.querySelector(".student_card").addEventListener("click", () => {
+    document.querySelector(".modal").classList.remove("hide");
+    document.querySelector(".modal_firstname").textContent = student.firstName;
+    document.querySelector(".modal_middlename").textContent = student.middleName;
+    document.querySelector(".modal_lastname").textContent = student.lastName;
+    document.querySelector(".modal_nickname").textContent = student.nickName;
+    document.querySelector(".modal_gender").textContent = student.gender;
+    document.querySelector(".modal_image").src = `images/${student.studentImage}`;
+
+    if (student.firstName === "Leanne") {
+      document.querySelector(".modal_image").src = `images/anonymus.png`;
+    } else if (student.firstName === "Padma") {
+      document.querySelector(".modal_image").src = `images/patil_padma.png`;
+    } else if (student.firstName === "Parvati") {
+      document.querySelector(".modal_image").src = `images/patil_parvati.png`;
+    } else {
+      document.querySelector(".modal_image").src = `images/${student.studentImage}`;
+    }
+
+    document.querySelector(".house_crest").src = `images/${student.house}.png`;
+    document.querySelector(".closeButton").addEventListener("click", () => {
+      document.querySelector(".modal").classList.add("hide");
+    });
+  });
+
   document.querySelector("#studentList").appendChild(clone);
 }
 //fixing blood status
@@ -241,3 +270,5 @@ function sortList() {
 
   displayList(sortedList);
 }
+
+//modal pop-up window

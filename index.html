@@ -15,7 +15,7 @@
     </header>
 
     <main>
-      <section id="background"><img src="images/background.jpg" alt="background" /></section>
+      <section id="background" class="overlay"><img src="images/background.jpg" class="img" alt="background" /></section>
 
       <!-- the different buttons that can filter and sort -->
       <section class="allthebuttons">
@@ -27,20 +27,25 @@
         <div class="dropdown_content">
           <button id="sort" class="dropdown_button">Sort by</button>
           <div id="sort_dropdown" class="button_dropdown">
-            <p data-sort-direction="asc" data-action="sort" data-sort="firstName">First name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="lastName">Last name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="house">House</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="firstName" class="hover">First name: a-z</p>
+            <p data-sort-direction="desc" data-action="sort" data-sort="firstName" class="hover">First name: z-a</p>
+
+            <p data-sort-direction="asc" data-action="sort" data-sort="lastName" class="hover">Last name: a-z</p>
+            <p data-sort-direction="desc" data-action="sort" data-sort="lastName" class="hover">Last name: z-a</p>
+
+            <p data-sort-direction="asc" data-action="sort" data-sort="house" class="hover">House: a-z</p>
+            <p data-sort-direction="desc" data-action="sort" data-sort="house" class="hover">House: z-a</p>
           </div>
         </div>
         <!-- filtering between the houses -->
         <div class="dropdown_content">
           <button id="filter" class="dropdown_button">Filter by</button>
           <div id="dropdown_filter" class="button_dropdown">
-            <p data-filter="All houses" data-action="filter">All houses</p>
-            <p data-filter="Ravenclaw" data-action="filter">Ravenclaw</p>
-            <p data-filter="Hufflepuff" data-action="filter">Hufflepuff</p>
-            <p data-filter="Slytherin" data-action="filter">Slytherin</p>
-            <p data-filter="Gryffindor" data-action="filter">Gryffindor</p>
+            <p data-filter="All houses" data-action="filter" class="hover">All houses</p>
+            <p data-filter="Ravenclaw" data-action="filter" class="hover">Ravenclaw</p>
+            <p data-filter="Hufflepuff" data-action="filter" class="hover">Hufflepuff</p>
+            <p data-filter="Slytherin" data-action="filter" class="hover">Slytherin</p>
+            <p data-filter="Gryffindor" data-action="filter" class="hover">Gryffindor</p>
           </div>
         </div>
 
@@ -54,31 +59,12 @@
       <div class="search-bar" id="showAllButtons">
         <input type="text" placeholder="Search..." />
       </div>
-
-      <!-- <aside>
-        <div id="about-panel">
-          <section id="about-info">
-            <h2>ABOUT</h2>
-            <p id="total-count">All Students:</p>
-            <p id="active-count">Active Students:</p>
-            <p id="display-count">Displayed Students:</p>
-            <p id="expelled-count">Expelled Students:</p>
-            <p id="gryffindor-count">Gryffindor:</p>
-            <p id="ravenclaw-count">Ravenclaw:</p>
-            <p id="hufflepuff-count">Hufflepuff:</p>
-            <p id="slytherin-count">Slytherin:</p>
-            <p id="prefect-count">Prefects:</p>
-            <p id="inquisition-count">Inquisitorial squad:</p>
-          </section>
-        </div>
-      </aside> -->
-
       <!-- studentlist - what will appear on the student list  -->
       <section id="studentList"></section>
 
       <template id="studentTemplate">
         <table class="studentListTable">
-          <tr>
+          <tr class="student_card">
             <td data-field="image">
               <img src="images/anonymus.png" alt="Student's photo" />
             </td>
@@ -98,48 +84,43 @@
             </td>
           </tr>
         </table>
-      </template>
 
-      <!-- what will appear on the student modal pop-up window when clicked -->
-      <template id="modal">
-        <section>
-          <article>
-            <button class="closeButton">X</button>
-            <!-- expell animation-->
-            <div class="expell_animation" class="hide">
-              <p>EXPELLED!</p>
-            </div>
+        <section class="modal hide">
+          <div>
+            <article class="modal_styling">
+              <!-- expell animation-->
+              <!-- <div class="expell_animation" class="hide">
+                <p>EXPELLED!</p>
+              </div> -->
 
-            <div class="modal_left">
-              <div class="top">
-                <img src="images/zabini_b.png" alt="student image" />
-              </div>
-              <div class="bottom">
-                <!-- house crest -->
-                <div class="house_crest">
-                  <img src="images/gryffindor.png" alt="House crest" />
+              <div class="modal_left">
+                <div class="top">
+                  <img src="images/zabini_b.png" alt="student image" class="modal_image" />
+                </div>
+                <div class="bottom">
+                  <!-- house crest -->
+                  <img src="images/gryffindor.png" alt="House crest" class="house_crest" />
                 </div>
               </div>
-            </div>
-            <div class="modal_right">
-              <div class="top_right">
-                <!-- first name, middle name, last name, nick name, blood status -->
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-              </div>
-              <!-- the buttons on the modal that can be clicked -->
-              <div class="bottom_right">
-                <article>
+              <div class="modal_right">
+                <div class="top_right">
+                  <!-- first name, middle name, last name, nick name, blood status -->
+                  <p class="modal_firstname"></p>
+                  <p class="modal_middlename"></p>
+                  <p class="modal_lastname"></p>
+                  <p class="modal_nickname"></p>
+                  <p class="modal_gender"></p>
+                </div>
+                <!-- the buttons on the modal that can be clicked -->
+                <div class="bottom_right">
                   <button>EXPELL</button>
                   <button>PREFECT</button>
                   <button>SQUAD</button>
-                </article>
+                </div>
               </div>
-            </div>
-          </article>
+              <div class="closeButton">X</div>
+            </article>
+          </div>
         </section>
       </template>
 

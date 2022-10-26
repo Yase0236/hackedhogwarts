@@ -34,7 +34,7 @@ footer {
 
 /*****************background styling***********************/
 #background {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   top: 0;
   left: 0;
@@ -55,10 +55,11 @@ h2 {
   font-size: 2em;
   font-weight: 800;
 }
-h3,p {
+h3,
+p {
   /* text-align: center; */
-  padding: 1rem;
-  margin: 1rem;
+  /* padding: 1rem;
+  margin: 1rem; */
   font-size: 1.5em;
   font-weight: 800;
 }
@@ -117,17 +118,17 @@ p {
   margin: 1rem;
   justify-content: space-between;
 }
-  
+
 .studentListTable tr {
   cursor: pointer;
   padding: 1rem;
   margin: 1rem;
 }
-  
+
 .studentListTable td:nth-of-type(1) {
   height: 130px;
 }
-  
+
 .studentListTable td:nth-of-type(2) {
   width: 24rem;
   padding-left: 3rem;
@@ -137,14 +138,13 @@ p {
 .studentListTable td:nth-of-type(3) {
   width: 7rem;
 }
-  
+
 .studentListTable td:nth-of-type(3) img {
   height: 100px;
 }
 
-
 /************styling on the buttons**********/
-.allthebuttons{
+.allthebuttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -167,17 +167,12 @@ p {
 .allthebuttons button:hover {
   background-color: #60994e;
 }
-.all_students a, .all_students a:visited {
+.all_students a,
+.all_students a:visited {
   color: white;
   text-decoration: none;
 }
 
-/* .allthebuttons button span:nth-of-type(2) {
-  font-size: 1em;
-  float: right;
-  padding: 5px;
-} */
-  
 .allthebuttons button:hover {
   background-color: rgb(93, 55, 195);
 }
@@ -195,16 +190,16 @@ p {
 .dropdown_button p {
   margin: 0.5rem;
   cursor: pointer;
-} 
-  
+}
+
 .dropdown_button p:hover {
-  color: rgb(255, 255, 255)
+  color: rgb(255, 255, 255);
 }
 .dropdown_content {
   position: relative;
   display: inline-block;
 }
-.dropdown_content:hover .button_dropdown{
+.dropdown_content:hover .button_dropdown {
   display: block;
 }
 
@@ -217,23 +212,58 @@ p {
   z-index: 1;
   font-size: 0.7em;
 }
-
+.hover {
+  padding: 2rem;
+}
+.hover:hover {
+  /* background-color: rgb(130, 55, 195); */
+  text-decoration: underline;
+}
 .button_dropdown p {
   color: rgb(255, 237, 237);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-.bottom_right {
+
+/************modal styling*************/
+.modal {
+  position: fixed;
+  inset: 0 0 0 0;
+  background-color: rgba(22, 47, 186, 0.522);
+}
+.modal > div {
+  width: 100%;
+  height: 100%;
   display: flex;
+}
+.modal_styling {
+  padding: 3rem;
+  background-color: antiquewhite;
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  width: min((650px), 100% - (1rem * 2));
+  margin-inline: auto;
   justify-content: space-around;
-  gap: 1rem;
+  align-self: center;
 }
 
+.closeButton {
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+}
+.bottom_right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
 .bottom_right button {
   padding: 0.5rem;
   width: 12rem;
-  background: transparent;
+  background: var(--background-color);
   box-shadow: 0px 0px 4px 0.5px rgb(47, 255, 0);
   border: none;
   padding: 0.5rem;
@@ -241,49 +271,35 @@ p {
   font-family: var(--font-family);
   font-size: 1em;
   font-weight: 600;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  cursor: pointer;
+  /* margin-bottom: 1rem;
+  margin-top: 1rem; */
 }
 .bottom_right button:hover {
   box-shadow: 0px 0px 6px 1.5px rgb(47, 255, 0);
+  background-color: var(--text-color);
+  color: var(--background-color);
 }
-/************modal styling*************/
-#modal {
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  position: fixed;
-  background-color: antiquewhite;
-}
-
-#modal article {
-  max-width: 900px;
-  margin: 2em auto;
-  background-color: antiquewhite;
-}
-
-article {
+.house_crest {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+  border: 2px solid;
+  margin: 2rem;
+  box-shadow: 0px 0px 6px 1.5px rgb(47, 255, 0);
   border-radius: 25px;
-  padding: 1rem;
-  background-color: antiquewhite;
-  text-align: center;
 }
-.closeButton {
-  position: absolute;
-  right: -1em;
-  top: -1em;
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  background-color: black;
-  color: white;
-  border: 1px white solid;
+
+.top_right {
+  color: var(--background-color);
+  font-weight: 800;
 }
+
 /***************search bar styling************************/
 .search-bar {
   text-align: right;
 }
-  
+
 input[type="text"] {
   border: none;
   background: none;
@@ -296,11 +312,11 @@ input[type="text"] {
   color: var(--text-color);
   cursor: pointer;
 }
-  
+
 input[type="text"]::placeholder {
   color: var(--text-color);
 }
-  
+
 input[type="text"]:hover {
   width: 150px;
   transition: all 0.5s ease;
@@ -325,153 +341,152 @@ input[type="text"]::-webkit-search-cancel-button {
   z-index: 2;
   user-select: none;
   /* opacity: 90% */
-  background-color:rgb(255, 0, 0);
-  }
-  
-  .expell_animation p {
+  background-color: rgb(255, 0, 0);
+}
+
+.expell_animation p {
   font-size: 5rem;
   font-weight: 800;
   text-align: inherit;
   color: rgb(0, 0, 0);
-  }
-  
-  .slideOut {
+}
+
+.slideOut {
   position: fixed;
   font-size: 150px;
   font-weight: 500;
   text-align: center;
   top: 0;
   z-index: 20;
-  }
-  
-  .slideOut p {
+}
+
+.slideOut p {
   background-color: #20282e;
   width: 100vw;
   height: 25vh;
   margin: 0;
   opacity: 0;
   user-select: none;
-  }
-  
-  .slideOut p:nth-of-type(1) {
-    animation: moveTop 0.5s linear forwards;
-  }
-  
-  @keyframes moveTop {
-    0% {
-      opacity: 1;
-      transform: translate(0, -200px);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
-  
-  .slideOut p:nth-of-type(2) {
-    animation: moveLeft 0.5s linear 0.5s forwards;
-  }
-  
-  @keyframes moveLeft {
-    0% {
-      opacity: 1;
-      transform: translate(-1500px);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0);
-    }
-  }
-  
-  .slideOut p:nth-of-type(3) {
-    animation: moveRight 0.5s linear 1s forwards;
-  }
-  
-  @keyframes moveRight {
-    0% {
-      opacity: 1;
-      transform: translate(1500px);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0);
-    }
-  }
-  
-  .slideOut p:nth-of-type(4) {
-    animation: moveBottom 0.5s linear 1.5s forwards;
-  }
-  
-  @keyframes moveBottom {
-    0% {
-      opacity: 1;
-      transform: translate(0, 200px);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
-  
-  @media screen and (max-width: 800px) {
-    .modalRight img {
-      display: none;
-    }
-  
-    .modalLeft {
-      width: 90%;
-    }
-  
-    .buttonsModal {
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-  
-    .firstModal {
-      width: fit-content;
-      height: fit-content;
-    }
-  
-    .modalLeftTop {
-      flex-direction: column;
-    }
-  
-    .modalLeftTop img {
-      display: none;
-    }
-  
-    .expelledRed p {
-      font-size: 50px;
-    }
-  
-    h1 {
-      font-size: 30px;
-    }
-  
-    h3 {
-      font-size: 22px;
-    }
-  
-    .tableStudentList td:nth-of-type(2) {
-      padding-left: 1rem;
-      font-size: 18px;
-    }
-  
-    .tableStudentList td:nth-of-type(5) {
-      display: none;
-    }
-  
-    .tableStudentList td:nth-of-type(1) img {
-      width: 90px;
-    }
-  
-    .smallModal {
-      width: 280px;
-    }
-  
-    .slideOut {
-      font-size: 100px;
-    }
 }
-  
+
+.slideOut p:nth-of-type(1) {
+  animation: moveTop 0.5s linear forwards;
+}
+
+@keyframes moveTop {
+  0% {
+    opacity: 1;
+    transform: translate(0, -200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.slideOut p:nth-of-type(2) {
+  animation: moveLeft 0.5s linear 0.5s forwards;
+}
+
+@keyframes moveLeft {
+  0% {
+    opacity: 1;
+    transform: translate(-1500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.slideOut p:nth-of-type(3) {
+  animation: moveRight 0.5s linear 1s forwards;
+}
+
+@keyframes moveRight {
+  0% {
+    opacity: 1;
+    transform: translate(1500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.slideOut p:nth-of-type(4) {
+  animation: moveBottom 0.5s linear 1.5s forwards;
+}
+
+@keyframes moveBottom {
+  0% {
+    opacity: 1;
+    transform: translate(0, 200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modalRight img {
+    display: none;
+  }
+
+  .modalLeft {
+    width: 90%;
+  }
+
+  .buttonsModal {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .firstModal {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .modalLeftTop {
+    flex-direction: column;
+  }
+
+  .modalLeftTop img {
+    display: none;
+  }
+
+  .expelledRed p {
+    font-size: 50px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  .tableStudentList td:nth-of-type(2) {
+    padding-left: 1rem;
+    font-size: 18px;
+  }
+
+  .tableStudentList td:nth-of-type(5) {
+    display: none;
+  }
+
+  .tableStudentList td:nth-of-type(1) img {
+    width: 90px;
+  }
+
+  .smallModal {
+    width: 280px;
+  }
+
+  .slideOut {
+    font-size: 100px;
+  }
+}
