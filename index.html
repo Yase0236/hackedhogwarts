@@ -56,8 +56,8 @@
       </section>
 
       <!-- search bar -->
-      <div class="search-bar" id="showAllButtons">
-        <input type="text" placeholder="Search..." />
+      <div class="search-bar">
+        <input id="search" type="search" placeholder="Search..." data-action="search" />
       </div>
       <!-- studentlist - what will appear on the student list  -->
       <section id="studentList"></section>
@@ -70,12 +70,7 @@
             </td>
             <td data-field="firstName"></td>
             <td data-field="lastName"></td>
-            <td data-field="prefect">
-              <img class="hide" src="images/prefects.png" alt="Prefect" />
-            </td>
-            <td data-field="squad">
-              <img class="hide" src="images/squad.png" alt="Squad" />
-            </td>
+
             <td data-field="blood">
               <img src="images/muggleblood.png" alt="Blood type" id="bloodStatus" />
             </td>
@@ -89,17 +84,17 @@
           <div>
             <article class="modal_styling">
               <!-- expell animation-->
-              <!-- <div class="expell_animation" class="hide">
+              <div class="expell_animation hide">
                 <p>EXPELLED!</p>
-              </div> -->
+              </div>
 
               <div class="modal_left">
                 <div class="top">
-                  <img src="images/zabini_b.png" alt="student image" class="modal_image" />
+                  <img src="" alt="student image" class="modal_image" />
                 </div>
                 <div class="bottom">
                   <!-- house crest -->
-                  <img src="images/gryffindor.png" alt="House crest" class="house_crest" />
+                  <img src="" alt="House crest" class="house_crest" />
                 </div>
               </div>
               <div class="modal_right">
@@ -113,9 +108,15 @@
                 </div>
                 <!-- the buttons on the modal that can be clicked -->
                 <div class="bottom_right">
-                  <button>EXPELL</button>
-                  <button>PREFECT</button>
-                  <button>SQUAD</button>
+                  <button class="expell_button">EXPELL</button>
+                  <div>
+                    <button class="prefect_button">PREFECT</button>
+                    <img class="prefect_image hide" src="images/prefects.png" alt="Prefect" />
+                  </div>
+                  <div>
+                    <button class="squad_button">SQUAD</button>
+                    <img class="squad_image hide" src="images/squad.png" alt="Squad" />
+                  </div>
                 </div>
               </div>
               <div class="closeButton">X</div>

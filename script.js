@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", init);
 //all my variables
 let allStudents = [];
 
-let expelledArray = [];
+let searchArray = [];
 
+let expelledArray = [];
 let squadArray = [];
 let prefectArray = [];
 
@@ -50,6 +51,7 @@ function registerButtons() {
   // console.log("registerBtns");
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
   document.querySelectorAll("[data-action='sort']").forEach((p) => p.addEventListener("click", selectSort));
+  document.querySelectorAll("[data-action='search']").forEach((option) => option.addEventListener("input", selectSearch));
 }
 
 async function loadJSON() {
@@ -84,7 +86,7 @@ function prepareObject(elm) {
   const gender = elm.gender;
 
   newObj.firstName = firstLetterUpperCase(splittedName[0]);
-  newObj.middleName = splittedName.length === 3 && !splittedName[1].includes('"') ? splittedName[1] : "";
+  newObj.middleName = splittedName.length === 3 && !splittedName[1].includes('"') ? splittedName[1] : "".substring(1, 0).toUpperCase();
   newObj.lastName = splittedName.length > 1 ? firstLetterUpperCase(splittedName.slice(-1)[0]) : " ";
   newObj.nickName = splittedName.length === 3 && splittedName[1].includes('"') ? firstLetterUpperCase(splittedName[1].replaceAll('"', "")) : "";
   newObj.house = firstLetterUpperCase(elm.house.replaceAll(" ", "").toLowerCase());
@@ -109,9 +111,10 @@ function displayStudent(student) {
 
   clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
   clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
-  clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
-
-  clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
+  // if (!student.house) console.log(student);
+  if (student.house) clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
+  // console.log(student.blood);
+  if (student.blood) clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
 
   if (student.firstName === "Leanne") {
     clone.querySelector('[data-field="image"] img').src = `images/anonymus.png`;
@@ -211,6 +214,7 @@ function selectFilter(event) {
 
 function setFilter() {
   let filteredStudents = allStudents.filter(filtered);
+
   if (document.querySelector("#filter").textContent !== "filter " && document.querySelector("#filter").textContent !== "filter ") {
   }
   return filteredStudents;
@@ -271,4 +275,26 @@ function sortList() {
   displayList(sortedList);
 }
 
-//modal pop-up window
+//search bar
+
+function selectSearch(event) {
+  console.log("Hello");
+  let search = event.target.value;
+  // let searchedStudents = allStudents.filter(searchTerm);
+
+  searchArray = allStudents.filter(searchTerm);
+
+  function searchTerm(student) {
+    if (student.lastName && student.firstName.toLowerCase().includes(search)) {
+      return true;
+    } else if (student.firstName.toLowerCase().includes(search) || student.lastName.toLowerCase().includes(search)) {
+      return true;
+    } else return false;
+  }
+  // console.log(searchArray);
+  // searchArray.forEach((stud) => {
+  //   displayStudent(stud);
+  // });
+  settings.displayedArray = searchArray;
+  displayList();
+}
