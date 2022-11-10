@@ -27,37 +27,41 @@
         <div class="dropdown_content">
           <button id="sort" class="dropdown_button">Sort by</button>
           <div id="sort_dropdown" class="button_dropdown">
-            <p data-sort-direction="asc" data-action="sort" data-sort="firstName" class="hover">First name: a-z</p>
-            <p data-sort-direction="desc" data-action="sort" data-sort="firstName" class="hover">First name: z-a</p>
-
-            <p data-sort-direction="asc" data-action="sort" data-sort="lastName" class="hover">Last name: a-z</p>
-            <p data-sort-direction="desc" data-action="sort" data-sort="lastName" class="hover">Last name: z-a</p>
-
-            <p data-sort-direction="asc" data-action="sort" data-sort="house" class="hover">House: a-z</p>
-            <p data-sort-direction="desc" data-action="sort" data-sort="house" class="hover">House: z-a</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="firstName" class="hover">First name</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="lastName" class="hover">Last name</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="house" class="hover">House</p>
           </div>
         </div>
         <!-- filtering between the houses -->
         <div class="dropdown_content">
           <button id="filter" class="dropdown_button">Filter by</button>
           <div id="dropdown_filter" class="button_dropdown">
-            <p data-filter="All houses" data-action="filter" class="hover">All houses</p>
-            <p data-filter="Ravenclaw" data-action="filter" class="hover">Ravenclaw</p>
-            <p data-filter="Hufflepuff" data-action="filter" class="hover">Hufflepuff</p>
-            <p data-filter="Slytherin" data-action="filter" class="hover">Slytherin</p>
-            <p data-filter="Gryffindor" data-action="filter" class="hover">Gryffindor</p>
+            <p data-filter="All houses" data-action="filter" data-type="house" class="hover">All houses</p>
+            <p data-filter="Ravenclaw" data-action="filter" data-type="house" class="hover">Ravenclaw</p>
+            <p data-filter="Hufflepuff" data-action="filter" data-type="house" class="hover">Hufflepuff</p>
+            <p data-filter="Slytherin" data-action="filter" data-type="house" class="hover">Slytherin</p>
+            <p data-filter="Gryffindor" data-action="filter" data-type="house" class="hover">Gryffindor</p>
+            <p data-filter="Expelled" data-action="filter" data-type="expelled" class="hover">Expelled</p>
+            <p data-filter="Squad" data-action="filter" data-type="squad" class="hover">Squad</p>
+            <p data-filter="Prefect" data-action="filter" data-type="prefect" class="hover">Prefect</p>
           </div>
         </div>
-
-        <!-- rest of the buttons -->
-        <div><button class="expelled">Expelled students</button></div>
-        <div><button class="squad">Inquisitorial Squad</button></div>
-        <div><button class="prefects">Prefects</button></div>
       </section>
 
       <!-- search bar -->
       <div class="search-bar">
         <input id="search" type="search" placeholder="Search..." data-action="search" />
+      </div>
+
+      <div class="information">
+        <p>Total students: <span id="total_students"></span></p>
+        <p>Gryffindor: <span id="gryffindor_students"></span></p>
+        <p>Hufflepuff: <span id="hufflepuff_students"></span></p>
+        <p>Slytherin: <span id="slytherin_students"></span></p>
+        <p>Ravenclaw: <span id="ravenclaw_students"></span></p>
+        <p>Expelled students: <span id="expelled_students"></span></p>
+        <p>Prefect students: <span id="prefect_students"></span></p>
+        <p>Squad students: <span id="squad_students"></span></p>
       </div>
       <!-- studentlist - what will appear on the student list  -->
       <section id="studentList"></section>
@@ -84,7 +88,7 @@
           <div>
             <article class="modal_styling">
               <!-- expell animation-->
-              <div class="expell_animation hide">
+              <div class="expell_animation">
                 <p>EXPELLED!</p>
               </div>
 
@@ -109,13 +113,13 @@
                 <!-- the buttons on the modal that can be clicked -->
                 <div class="bottom_right">
                   <button class="expell_button">EXPELL</button>
-                  <div>
+                  <div class="modal_icons">
                     <button class="prefect_button">PREFECT</button>
-                    <img class="prefect_image hide" src="images/prefects.png" alt="Prefect" />
+                    <img class="prefect_image hidden" src="images/prefects.png" alt="Prefect" />
                   </div>
-                  <div>
+                  <div class="modal_icons">
                     <button class="squad_button">SQUAD</button>
-                    <img class="squad_image hide" src="images/squad.png" alt="Squad" />
+                    <img class="squad_image hidden" src="images/squad.png" alt="Squad" />
                   </div>
                 </div>
               </div>
@@ -124,6 +128,22 @@
           </div>
         </section>
       </template>
+
+      <div id="remove_aorb" class="modal hide">
+        <div class="dialog">
+          <div class="close">X</div>
+          <h1>Warning!</h1>
+          <p>
+            There can not be more than two prefects. <br />
+            you shall remove one of these!!
+          </p>
+
+          <div class="sidebyside">
+            <button id="removea">Remove <span data-field="prefectA">A</span></button>
+            <button id="removeb">Remove <span data-field="prefectB">B</span></button>
+          </div>
+        </div>
+      </div>
 
       <!-- hacking goes here -->
 
