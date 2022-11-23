@@ -396,14 +396,16 @@ function selectFilter(event) {
 function setFilter(event) {
   let filteredStudents;
 
-  console.log(event.target.dataset.filter);
-  if (event.target.dataset.filter !== `Expelled`) {
-    filteredStudents = allStudents.filter(filtered);
+  if (event.target.dataset.filter === "*") {
+    filteredStudents = allStudents.filter((stud) => {
+      if (!stud.expelled) return stud;
+    });
   } else {
-    filteredStudents = expelledArray.filter(filtered);
-  }
-
-  if (document.querySelector("#filter").textContent !== "filter " && document.querySelector("#filter").textContent !== "filter ") {
+    if (event.target.dataset.filter !== `Expelled`) {
+      filteredStudents = allStudents.filter(filtered);
+    } else {
+      filteredStudents = expelledArray.filter(filtered);
+    }
   }
   return filteredStudents;
 }
