@@ -15,7 +15,12 @@
     </header>
 
     <main>
-      <section id="background" class="overlay"><img src="images/background.jpg" class="img" alt="background" /></section>
+      <section id="background" class="overlay">
+        <img src="images/background.jpg" class="img" alt="background" />
+      </section>
+
+      <!-- for the hacking part -->
+      <button class="hidden_button"></button>
 
       <!-- the different buttons that can filter and sort -->
       <section class="allthebuttons">
@@ -27,9 +32,9 @@
         <div class="dropdown_content">
           <button id="sort" class="dropdown_button">Sort by</button>
           <div id="sort_dropdown" class="button_dropdown">
-            <p data-sort-direction="asc" data-action="sort" data-sort="firstName" class="hover">First name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="lastName" class="hover">Last name</p>
-            <p data-sort-direction="asc" data-action="sort" data-sort="house" class="hover">House</p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="firstName" class="hover">First name <span>&#8645;</span></p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="lastName" class="hover">Last name <span>&#8645;</span></p>
+            <p data-sort-direction="asc" data-action="sort" data-sort="house" class="hover">House <span>&#8645;</span></p>
           </div>
         </div>
         <!-- filtering between the houses -->
@@ -131,21 +136,16 @@
 
       <div id="remove_aorb" class="modal hide">
         <div class="dialog">
-          <div class="close">X</div>
-          <h1>Warning!</h1>
-          <p>
-            There can not be more than two prefects. <br />
-            you shall remove one of these!!
-          </p>
+          <h1 class="warning">Warning!</h1>
+          <p class="warning">There can not be more than two prefects in each house. You need remove one of these students.</p>
 
           <div class="sidebyside">
             <button id="removea">Remove <span data-field="prefectA">A</span></button>
             <button id="removeb">Remove <span data-field="prefectB">B</span></button>
           </div>
+          <div class="close">X</div>
         </div>
       </div>
-
-      <!-- hacking goes here -->
 
       <footer>By Jasmin Ersan, MMD 2022</footer>
     </main>

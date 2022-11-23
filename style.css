@@ -76,7 +76,20 @@ p {
   border-radius: 50px;
   margin-right: 1.5rem;
 }
-
+/****************************************** hacking section*******************************/
+/* at the top left screen, the cursor changes at hover */
+.hidden_button {
+  cursor: pointer;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+}
+.hacked {
+  background-color: rgb(57, 52, 72);
+}
+.hackedBackground {
+  opacity: 0.2;
+}
 /****************************************** about section*******************************/
 #about-panel {
   display: grid;
@@ -490,4 +503,33 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .hidden {
   visibility: hidden;
+}
+
+/*************modal - removing stundents for prefect pop-up***********/
+#removea,
+#removeb {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 0.15rem solid var(--text-color);
+  margin: 2rem;
+  padding: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: 1em;
+  font-weight: 600;
+  width: 12rem;
+  /* position: relative;
+  inset: 0 0 0 0; */
+}
+.warning,
+.sidebyside {
+  padding: 2rem;
+}
+
+.close {
+  margin: 1.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
 }
