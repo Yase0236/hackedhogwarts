@@ -66,8 +66,6 @@ function registerButtons() {
 }
 
 async function loadJSON() {
-  // console.log("loadJSON");
-
   const response = await fetch(jsonURL);
   const jsonData = await response.json();
 
@@ -75,8 +73,6 @@ async function loadJSON() {
 }
 
 async function loadBlood() {
-  // console.log("loadBlood");
-
   const response = await fetch(bloodURL);
   const bloodData = await response.json();
   prepareBlood(bloodData);
@@ -125,9 +121,7 @@ function displayStudent(student) {
 
   clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
   clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
-  // if (!student.house) console.log(student);
   if (student.house) clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
-  // console.log(student.blood);
   if (student.blood) clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
 
   if (student.firstName === "Leanne") {
