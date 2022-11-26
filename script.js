@@ -539,6 +539,7 @@ function insertNewStudent() {
   };
   allStudents.push(me);
 }
+
 function hackTheSystem() {
   systemHacked = true;
   console.log("systemHacked");

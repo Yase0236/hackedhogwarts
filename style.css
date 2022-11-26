@@ -173,7 +173,7 @@ p {
 .allthebuttons button:hover {
   background-color: rgb(93, 55, 195);
 }
-/* the dropdown buttons */
+/*****the dropdown buttons******/
 .dropdown_button {
   background-color: rgb(93, 55, 195);
   width: 12rem;
@@ -520,8 +520,6 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 1em;
   font-weight: 600;
   width: 12rem;
-  /* position: relative;
-  inset: 0 0 0 0; */
 }
 .warning,
 .sidebyside {
