@@ -109,7 +109,7 @@ function prepareObject(elm) {
 function firstLetterUpperCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
+//==================display the list==================
 function displayList() {
   document.querySelector("#studentList").innerHTML = "";
   settings.displayedArray.forEach(determineBloodStatus);
@@ -205,7 +205,7 @@ function displayStudent(student) {
       } else {
         makePrefect(selectedStudent);
       }
-
+      //==================if there are more than two prefects==================
       function deleteAorB(otherA, otherB) {
         document.querySelector("#remove_aorb").classList.remove("hide");
         document.querySelector("#remove_aorb .close").addEventListener("click", closeDialog);
@@ -301,7 +301,7 @@ function displayStudent(student) {
       }
     }
   });
-
+  //==================information box==================
   function informationUpdate() {
     document.querySelector("#total_students").textContent = allStudents.length;
     document.querySelector("#gryffindor_students").textContent = houses.gryffindor.length;
@@ -321,7 +321,7 @@ function prepareBlood(bloodData) {
   pureBlood = bloodData.pure;
   halfBlood = bloodData.half;
 }
-
+// randomize blood status if expelled
 function determineBloodStatus(student) {
   let myRand;
   if (systemHacked === true) {
@@ -440,6 +440,8 @@ function filtered(student) {
     }
   }
 }
+
+//==================building the list==================
 function buildList() {
   const filteredList = filtered(filteredStudents);
   return filteredList;
@@ -533,6 +535,8 @@ function insertNewStudent() {
   };
   allStudents.push(me);
 }
+
+// alerting the user that its hacked
 
 function hackTheSystem() {
   systemHacked = true;
