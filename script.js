@@ -115,6 +115,7 @@ function displayList() {
   settings.displayedArray.forEach(determineBloodStatus);
   settings.displayedArray.forEach(displayStudent);
 }
+//==================display the students on the list==================
 
 function displayStudent(student) {
   const clone = document.querySelector("#studentTemplate").content.cloneNode(true);
@@ -321,7 +322,7 @@ function prepareBlood(bloodData) {
   pureBlood = bloodData.pure;
   halfBlood = bloodData.half;
 }
-// randomize blood status if expelled
+// randomize blood status if hacked
 function determineBloodStatus(student) {
   let myRand;
   if (systemHacked === true) {
@@ -536,7 +537,7 @@ function insertNewStudent() {
   allStudents.push(me);
 }
 
-// alerting the user that its hacked
+// alerting the user that the site is hacked
 
 function hackTheSystem() {
   systemHacked = true;
