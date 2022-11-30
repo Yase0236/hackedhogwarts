@@ -122,7 +122,7 @@ function displayStudent(student) {
 
   clone.querySelector('[data-field="firstName"]').textContent = student.firstName;
   clone.querySelector('[data-field="lastName"]').textContent = student.lastName;
-  if (student.house) clone.querySelector('[data-field="house"] img').src = `images/${student.house}.png`;
+  if (student.house) clone.querySelector('[data-field="house"] img').src = `images/${student.house.toLowerCase()}.png`;
   if (student.blood) clone.querySelector('[data-field="blood"] img').src = `images/${student.blood}.png`;
 
   if (student.firstName === "Leanne") {
