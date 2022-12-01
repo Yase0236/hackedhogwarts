@@ -159,7 +159,7 @@ function displayStudent(student) {
     document.querySelector(".modal_gender").textContent = student.gender;
     document.querySelector(".modal_image").src = `images/${student.studentImage}`;
 
-    if (student.firstName === "Leanne") {
+    if (student.firstName === "Leanne" || student.firstName === "Jasmin") {
       document.querySelector(".modal_image").src = `images/anonymus.png`;
     } else if (student.firstName === "Padma") {
       document.querySelector(".modal_image").src = `images/patil_padma.png`;
