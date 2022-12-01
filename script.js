@@ -169,7 +169,7 @@ function displayStudent(student) {
       document.querySelector(".modal_image").src = `images/${student.studentImage}`;
     }
 
-    document.querySelector(".house_crest").src = `images/${student.house}.png`;
+    document.querySelector(".house_crest").src = `images/${student.house.toLowerCase()}.png`;
     document.querySelector(".closeButton").addEventListener("click", () => {
       document.querySelector(".modal").classList.add("hide");
       document.querySelector(".prefect_button").removeEventListener("click", makeStudentPrefect);
